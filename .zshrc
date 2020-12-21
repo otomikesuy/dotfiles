@@ -1,28 +1,25 @@
-# solarized darkを設定
+# Setup solarized dark
 eval `/usr/local/opt/coreutils/libexec/gnubin/dircolors ~/.dircolors-solarized/dircolors.ansi-dark`
 
-# solarizedにgdicolorsを変更
+# Apply solarized dark
 eval $(gdircolors ~/.dircolors-solarized/dircolors.ansi-dark)
 
-# Ctrl+D$B$G%m%0%"%&%H$7$F$7$^$&$3$H$rKI$0(B
+# Prevent Ctrl+D from logging-out
 setopt IGNOREEOF
 
-# $BF|K\8l$rMxMQ$9$k(B
+# Apply jp environment
 export LANG=ja_JP.UTF-8
 
-# $BJd40(B
+# Setup auto completion
 autoload -Uz compinit
 compinit
 
-# $B%3%^%s%I%_%9$r=$@5(B
+# Correct command mistakes
 setopt correct
 
-# $B?'@_Dj(B
+# Set colors
 autoload -U colors
 colors
-
-# $B$b$7$+$7$F5!G=(B
-setopt correct
 
 # ------------------------------
 # Alias Command
@@ -38,18 +35,13 @@ alias so='source'
 alias vt='vi ~/.tmux.conf'
 alias mongod='mongod --dbpath /usr/local/var/mongodb'
 
-# cd$B%3%^%s%I$N8e$K(Bls$B$r<B9T(B
+# ls after cd command
 chpwd() { gls -al --color=auto }
 
-# $B8=:_CO$NI=<((B
-# PS1="%{$fg[cyan]%}[${USER}@%~]%"
-
-# PROMPT="%{$fg[cyan]%}[${USER}@%~]%"
-
-# PCRE $B8_49$N@55,I=8=$r;H$&(B
+# PCRE regexp
 setopt re_match_pcre
 
-# $B%W%m%s%W%H$,I=<($5$l$k$?$S$K%W%m%s%W%HJ8;zNs$rI>2A!"CV49$9$k(B
+# command substitution in prompt
 setopt prompt_subst
 
 
@@ -60,22 +52,23 @@ BOMB=$'\U1F4A3'
 BYE=$'\U1F44B'
 DASH=$'\U1F4A8'
 
-# backuped$B%W%m%s%W%H;XDj(B
+# prompt backups
 #PROMPT="
 #[%n] %{${fg[yellow]}%}%~%{${reset_color}%}
 #%(?.%{$fg[green]%}.%{$fg[blue]%})%(?!(*'-')${GHOST} <!(*;_;%)ehh? <)%{${reset_color}%} "
 
+# prompt first line
 PROMPT="
 [%n] %{${fg[yellow]}%}%~%{${reset_color}%}
 %(?.%{$fg[green]%}.%{$fg[red]%})%(?!${GHOST}${GHOST}${GHOST} <BOO ${DASH} !${POOP}${POOP}${POOP} <PEE! ${DASH} )%{${reset_color}%} "
 
-# $B%W%m%s%W%H;XDj(B($B%3%^%s%I$NB3$-(B)
+# prompt second line
 PROMPT2='[%n]> '
 
-# backuped$B$b$7$+$7$F;~$N%W%m%s%W%H;XDj(B
+# sprompt backups
 # SPROMPT="%{$fg[red]%}%{$suggest%}(*'~'%)? < probably... %B%r%b %{$fg[red]%}? [yep!(y), nope!(n),a,e]:${reset_color} "
 
-# $B$b$7$+$7$?$i$N%W%m%s%W%H;XDj(B
+# sprompt 
 SPROMPT="%{$fg[red]%}%{$suggest%}(*'~'%)? < probably... %B%r%b %{$fg[red]%}? [yep!(y), nope!(n),a,e]:${reset_color} "
 
 # showing git current branch 
@@ -83,35 +76,35 @@ function rprompt-git-current-branch {
   local branch_name
  
   if [ ! -e  ".git" ]; then
-    # git $B4IM}$5$l$F$$$J$$%G%#%l%/%H%j$O2?$bJV$5$J$$(B
+    # Doen't show any branchs if any of files are managed under github
     return
   fi
   branch_name=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
   echo "[$branch_name]"
 }
 
-# $B%W%m%s%W%H$N1&B&$K%a%=%C%I$N7k2L$rI=<($5$;$k(B
+# add current branch to right prompt
 RPROMPT='`rprompt-git-current-branch`'
 
 # autosuggestion's color
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=white,bg=pink,bold,underline"
 
-# PYENV$B$N4D6-@_Dj(B
+# PYENV setup
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-# OPENSSL$B$N%Q%9$N@_Dj(B
+# OPENSSL path setup
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 
-# NVM$B$N4D6-@_Dj(B
+# NVM setup
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 alias ll="ls -alG"
 
-# node.js express$BMQ$N4D6-@_Dj(B
+# node.js express path setup
 export PATH=/usr/local/share/npm/bin:$PATH
 export NODE_PATH=/usr/local/lib/node_modules
 
