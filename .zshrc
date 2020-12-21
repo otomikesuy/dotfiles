@@ -1,7 +1,7 @@
-# solarized dark$B$r@_Dj(B
+# solarized darkを設定
 eval `/usr/local/opt/coreutils/libexec/gnubin/dircolors ~/.dircolors-solarized/dircolors.ansi-dark`
 
-# solarized$B$K(Bgdicolors$B$rJQ99(B
+# solarizedにgdicolorsを変更
 eval $(gdircolors ~/.dircolors-solarized/dircolors.ansi-dark)
 
 # Ctrl+D$B$G%m%0%"%&%H$7$F$7$^$&$3$H$rKI$0(B
