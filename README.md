@@ -1,2 +1,2 @@
 # dotfiles
-My incomplete dot-buddys.
+Still in progress...
